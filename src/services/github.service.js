@@ -16,6 +16,12 @@ export default class GitHubService {
         this._loadTags();
     }
 
+    async _loadMeta(){
+        let url = `https://github.com/${this.owner}/${this.repository}/network/meta`;
+        const d = await axios.get(`https://cors-anywhere.herokuapp.com/${url}`, { headers: {'x-requested-with':'XMLHttpRequest'}});
+        console.log(d);
+    }
+
     _loadBranches() {
         axios
             .get(`${this.baseURL}/repos/${this.owner}/${this.repository}/git/refs/heads`)
